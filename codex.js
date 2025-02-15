@@ -126,6 +126,10 @@ function animate() {
         totalRotation = 0; // Reset total rotation
     }
 
+        // Rotate the wave for a better view
+    wavePoints.rotation.x += 0.001;
+    wavePoints.rotation.y += 0.001;
+
     renderer.render(scene, camera);
 }
 
