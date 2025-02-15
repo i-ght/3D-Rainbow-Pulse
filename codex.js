@@ -77,7 +77,10 @@ camera.position.z = 5;
 let time = 0;
 
 // Windmill rotation speed
-const windmillRotationSpeed = 0.01;
+let windmillRotationSpeed = 0.01;
+
+// Total rotation angle
+let totalRotation = 0;
 
 // Function to update wave heights
 function updateWave() {
@@ -112,7 +115,16 @@ function animate() {
     time += 0.05;
 
     // Apply windmill rotation effect
-    wavePoints.rotation.z += windmillRotationSpeed; // Rotate around the Z-axis
+    wavePoints.rotation.z += windmillRotationSpeed;
+
+    // Update total rotation
+    totalRotation += Math.abs(windmillRotationSpeed);
+
+    // Reverse rotation direction after 1 full revolution (360 degrees or ~6.28 radians)
+    if (totalRotation >= 2 * Math.PI) {
+        windmillRotationSpeed *= -1; // Reverse direction
+        totalRotation = 0; // Reset total rotation
+    }
 
     renderer.render(scene, camera);
 }
