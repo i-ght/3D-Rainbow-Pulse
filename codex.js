@@ -76,6 +76,9 @@ camera.position.z = 5;
 // Time variable for animation
 let time = 0;
 
+// Windmill rotation speed
+const windmillRotationSpeed = 0.01;
+
 // Function to update wave heights
 function updateWave() {
     const positions = wavePoints.geometry.attributes.position.array;
@@ -108,9 +111,8 @@ function animate() {
     // Increment time for animation
     time += 0.05;
 
-    // Rotate the wave for a better view
-    wavePoints.rotation.x += 0.005;
-    wavePoints.rotation.y += 0.005;
+    // Apply windmill rotation effect
+    wavePoints.rotation.z += windmillRotationSpeed; // Rotate around the Z-axis
 
     renderer.render(scene, camera);
 }
